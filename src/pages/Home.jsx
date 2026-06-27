@@ -27,8 +27,7 @@ export const Home = () => {
         <div className="bg-black min-vh-100 d-flex">
             {/* Sidebar */}
             <div className="bg-black border-end border-secondary py-4" style={{ width: "160px", minWidth: "160px" }}>
-                <p className="text-secondary small px-3 pb-2 mb-0">BROWSE</p>
-                <p className="text-secondary small px-3 py-1 mb-0" style={{ cursor: "pointer" }}>ALL</p>
+                                <p className="text-secondary small px-3 py-1 mb-0" style={{ cursor: "pointer" }}>ALL</p>
                 {CATEGORIES.map(cat => (
                     <p
                         key={cat}
