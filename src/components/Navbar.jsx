@@ -13,7 +13,7 @@ export const Navbar = () => {
                     STAR WARS
                 </span>
             </Link>
-            <div className="dropdown">
+            <div className="position-relative">
                 <button
                     onClick={() => setOpen(!open)}
                     className="btn btn-outline-light btn-sm"
@@ -21,7 +21,7 @@ export const Navbar = () => {
                     Favorites <span className="badge bg-danger ms-1">{store.favorites.length}</span>
                 </button>
                 {open && (
-                    <div className="dropdown-menu dropdown-menu-end show bg-dark border border-secondary" style={{ minWidth: "220px", zIndex: 999 }}>
+                    <div className="position-absolute end-0 bg-dark border border-secondary rounded mt-1" style={{ minWidth: "220px", zIndex: 999 }}>
                         {store.favorites.length === 0 ? (
                             <p className="text-muted px-3 py-2 mb-0">No favorites yet.</p>
                         ) : (
