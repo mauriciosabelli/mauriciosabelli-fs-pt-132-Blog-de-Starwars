@@ -7,14 +7,13 @@ export const Navbar = () => {
     const [open, setOpen] = useState(false);
 
     return (
-        <nav style={{ background: "#000", borderBottom: "1px solid #222", padding: "12px 24px" }}
-            className="d-flex justify-content-between align-items-center">
+        <nav className="bg-black border-bottom border-secondary d-flex justify-content-between align-items-center px-4 py-2">
             <Link to="/" className="text-decoration-none">
-                <span style={{ color: "#fff", fontWeight: "bold", fontSize: "20px", letterSpacing: "2px" }}>
+                <span className="text-white fw-bold fs-5">
                     STAR WARS
                 </span>
             </Link>
-            <div className="position-relative">
+            <div className="dropdown">
                 <button
                     onClick={() => setOpen(!open)}
                     className="btn btn-outline-light btn-sm"
@@ -22,16 +21,12 @@ export const Navbar = () => {
                     Favorites <span className="badge bg-danger ms-1">{store.favorites.length}</span>
                 </button>
                 {open && (
-                    <div style={{
-                        position: "absolute", right: 0, top: "110%", background: "#111",
-                        border: "1px solid #333", borderRadius: "4px", minWidth: "220px", zIndex: 999
-                    }}>
+                    <div className="dropdown-menu dropdown-menu-end show bg-dark border border-secondary" style={{ minWidth: "220px", zIndex: 999 }}>
                         {store.favorites.length === 0 ? (
-                            <p className="text-muted p-3 mb-0">No favorites yet.</p>
+                            <p className="text-muted px-3 py-2 mb-0">No favorites yet.</p>
                         ) : (
                             store.favorites.map((fav, i) => (
-                                <div key={i} className="d-flex justify-content-between align-items-center px-3 py-2"
-                                    style={{ borderBottom: "1px solid #222" }}>
+                                <div key={i} className="d-flex justify-content-between align-items-center px-3 py-2 border-bottom border-secondary">
                                     <Link to={`/${fav.type}/${fav.uid}`}
                                         className="text-decoration-none text-white"
                                         onClick={() => setOpen(false)}>

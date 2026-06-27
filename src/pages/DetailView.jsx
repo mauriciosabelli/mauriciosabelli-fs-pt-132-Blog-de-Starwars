@@ -18,44 +18,45 @@ export const DetailView = () => {
     }, [type, id]);
 
     if (!detail) return (
-        <div style={{ background: "#0d0d0d", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <p style={{ color: "#fff" }}>Loading...</p>
+        <div className="bg-black min-vh-100 d-flex align-items-center justify-content-center">
+            <p className="text-white">Loading...</p>
         </div>
     );
 
     const entries = Object.entries(detail).filter(([k]) => !["url", "created", "edited"].includes(k));
 
     return (
-        <div style={{ background: "#0d0d0d", minHeight: "100vh", color: "#fff" }}>
+        <div className="bg-black min-vh-100 text-white">
             {/* Hero */}
-            <div style={{ display: "flex", maxHeight: "340px", overflow: "hidden" }}>
+            <div className="d-flex overflow-hidden" style={{maxHeight: "340px"}}>
                 {type === "people" ? (
                     <img
                         src={`https://picsum.photos/seed/people${id}/420/340`}
                         alt={detail.name}
-                        style={{ width: "420px", minWidth: "420px", objectFit: "cover", objectPosition: "top" }}
+                        className="object-fit-cover"
+                        width="420"
                     />
                 ) : (
-                    <div style={{ width: "420px", minWidth: "420px", background: "#1a1a1a", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                        <span style={{ color: "#444", fontSize: "80px" }}>✦</span>
+                    <div className="bg-dark d-flex align-items-center justify-content-center" style={{width: "420px", minWidth: "420px"}}>
+                        <span className="text-secondary display-1">✦</span>
                     </div>
                 )}
-                <div style={{ padding: "40px", flex: 1 }}>
-                    <h1 style={{ letterSpacing: "3px", fontSize: "28px", marginBottom: "16px" }}>
+                <div className="p-5 flex-grow-1">
+                    <h1 className="fs-2 mb-3 fw-bold">
                         {detail.name?.toUpperCase()}
                     </h1>
-                    <p style={{ color: "#aaa", lineHeight: "1.7" }}>
+                    <p className="text-secondary lh-lg">
                         Explore the details of this {type === "people" ? "character" : type.slice(0, -1)} from the Star Wars universe.
                     </p>
                     <div className="d-flex gap-2 mt-3">
                         <button
                             onClick={() => dispatch({ type: "toggle_favorite", payload: { uid: id, name: detail.name, type } })}
-                            style={{ background: isFav ? "#c00" : "transparent", border: "1px solid #c00", color: "#fff", padding: "6px 16px", cursor: "pointer" }}>
+                            className={`btn px-3 py-1 ${isFav ? "btn-danger" : "btn-outline-danger"}`}>
                             {isFav ? "★ SAVED" : "☆ ADD TO FAVORITES"}
                         </button>
                         <button
                             onClick={() => navigate(-1)}
-                            style={{ background: "transparent", border: "1px solid #555", color: "#aaa", padding: "6px 16px", cursor: "pointer" }}>
+                            className="btn btn-outline-secondary px-3 py-1">
                             ← BACK
                         </button>
                     </div>
@@ -63,13 +64,13 @@ export const DetailView = () => {
             </div>
 
             {/* Attributes */}
-            <div style={{ padding: "32px", borderTop: "1px solid #222", display: "flex", flexWrap: "wrap", gap: "32px" }}>
+            <div className="p-4 border-top border-secondary d-flex flex-wrap gap-4">
                 {entries.map(([key, value]) => (
-                    <div key={key} style={{ minWidth: "120px" }}>
-                        <p style={{ color: "#c00", fontSize: "11px", letterSpacing: "2px", marginBottom: "4px" }}>
+                    <div key={key}>
+                        <p className="text-danger small fw-bold mb-1">
                             {key.replace(/_/g, " ").toUpperCase()}
                         </p>
-                        <p style={{ color: "#fff", fontSize: "13px" }}>{String(value) || "n/a"}</p>
+                        <p className="text-white small">{String(value) || "n/a"}</p>
                     </div>
                 ))}
             </div>

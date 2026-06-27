@@ -1,0 +1,9 @@
+.hero-container { max-height: 340px; }
+
+.hero-img { width: 420px; min-width: 420px; }
+
+.sidebar { width: 160px; min-width: 160px; }
+
+.card-item { width: 180px; }
+
+.card-overlay { background: linear-gradient(transparent, rgba(0,0,0,0.85)); }
